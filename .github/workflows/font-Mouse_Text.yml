@@ -41,11 +41,10 @@ jobs:
           Copy-Item Font_Text/Mouse_Text/font.otf font_work/font.otf -Force
 
       - name: Generate BMFont Files
-        shell: pwsh
+        shell: cmd
         run: |
-          Push-Location font_work
-          & "$env:GITHUB_WORKSPACE/scripts/bmfont64.com" -c "$env:GITHUB_WORKSPACE/font_work/config.bmfc" -o "$env:GITHUB_WORKSPACE/font_work/Mouse_Text.fnt"
-          Pop-Location
+          cd /d "%GITHUB_WORKSPACE%\font_work"
+          "%GITHUB_WORKSPACE%\scripts\bmfont64.com" -c "%GITHUB_WORKSPACE%\font_work\config.bmfc" -o "%GITHUB_WORKSPACE%\font_work\Mouse_Text.fnt"
 
       - name: Rename Texture Pages
         shell: pwsh
